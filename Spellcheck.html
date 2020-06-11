@@ -1,0 +1,47 @@
+<html>
+  <body>
+    <div>
+      <p style="color: red;">
+        The current dictionary contains: <br />
+        "Test" "The"
+      </p>
+      <textarea type="text" id="spellcheck"> </textarea>
+      <button>Check</button>
+      <div id="answer"></div>
+    </div>
+    <script>
+      function helper(s) {
+        let map = new Map();
+        map.set("tast", "test");
+        map.set("teh", "the");
+        map.set("tee", "the");
+        if (!map.get(s)) {
+          return "Sorry, dictionary not this advanced";
+        } else {
+          return map.get(s);
+        }
+      }
+
+      let misses = new Map();
+      misses.set("tast", "test");
+      console.log(misses);
+      //   misses("teh", "the");
+      //   misses("tee", "the");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("button").addEventListener("click", () => {
+          checkSpelling();
+        });
+        const checkSpelling = function () {
+          const target = document.querySelector("textarea");
+          // print out one word
+          console.log(target.value);
+          let returnThis = helper(target.value.trim());
+          console.log(returnThis);
+          var answerDiv = document.getElementById("answer");
+          answerDiv.innerHTML = returnThis;
+        };
+      });
+    </script>
+  </body>
+</html>
